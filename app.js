@@ -104,6 +104,8 @@ app.get('/api/check', tokenCheck({secret}), (req, res) => {
 	ROUTES
  */
 
+app.get('/', (req, res) => { res.end('Nothing to see here');  });
+
 app.get('/shows', tokenCheck({secret}), routes.shows.getAll);
 app.get('/shows/:id', tokenCheck({secret}), routes.shows.get);
 app.post('/shows', tokenCheck({secret}), routes.shows.create);

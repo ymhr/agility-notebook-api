@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "engines": {
-    "node": "7.3.0"  
+    "node": "7.3.0"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -21,13 +21,14 @@
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
+    "pm2": "^2.4.2",
     "sequelize": "^3.24.3"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "start": "forever start app.js"
+    "start": "pm2 kill && pm2 start app.js"
   },
   "author": "",
   "license": "ISC"

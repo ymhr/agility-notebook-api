@@ -31,15 +31,32 @@ module.exports = {
 
 		const {name, value} = req.body;
 
-		Setting.update({value}, {
+		const existing = Setting.find({
 			where: {
-				name,
-				userId: data.userId
+				userId: req.user.id,
+				name
 			}
-		})
-			.then((affectedCount, affectedRows) => res.json({success: true}))
-			.catch(err => res.json({success: false, err}));
-		;
+		}).then(s => {
+			if(s){
+				Setting.update({value}, {
+					where: {
+						name,
+						userId: data.userId,
+						id: s.id
+					}
+				})
+					.then((affectedCount, affectedRows) => res.json({success: true}))
+					.catch(err => res.json({success: false, err}));
+			} else {
+				Setting.create({
+					userId: data.userId,
+					name,
+					value
+				})
+					.then((affectedCount, affectedRows) => res.json({success: true}))
+					.catch(err => res.json({success: false, err}));
+			}
+		});
 
 	}
 };

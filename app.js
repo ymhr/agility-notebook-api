@@ -47,25 +47,26 @@ passport.use(new FacebookStrategy({
 	profileFields: ['id', 'emails', 'name']
 }, (accessToken, refreshToken, profile, done) => {
 
-	User.findOne({facebookId: profile.id}).then((user) => {
+	console.log('finding user by facebook id:', profile.id);
 
-		if(user) {
+	User.findOne({where: {facebookId: profile.id}}).then((user) => {
+		console.log('found user:', user.id);
 			user.update({
 				facebookToken: accessToken,
 				facebookRefreshToken: refreshToken
 			});
 			done(null, user);
-		} else {
-			const newUser = User.create({
-				facebookId: profile.id,
-				firstName: profile.name.givenName,
-				lastName: profile.name.familyName,
-				facebookToken: accessToken,
-				email: profile.emails[0].value
-			}).then(u => {
-				done(null, u);
-		});
-		}
+	})
+	.catch((err) => {
+		const newUser = User.create({
+			facebookId: profile.id,
+			firstName: profile.name.givenName,
+			lastName: profile.name.familyName,
+			facebookToken: accessToken,
+			email: profile.emails[0].value
+		}).then(u => {
+			done(null, u);
+	});
 	});
 
 }));
@@ -124,6 +125,6 @@ app.post('/settings', tokenCheck({secret}), routes.settings.update);
 /*
 Run the API server.
  */
-app.listen(process.env.PORT, () => {
-	console.log('App listening on port ${process.env.PORT}');
+app.listen(process.env.PORT || 3000, () => {
+	console.log(`App listening on port ${process.env.PORT}`);
 });

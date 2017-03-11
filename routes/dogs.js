@@ -17,5 +17,28 @@ module.exports = {
 			}
 		}).then(run => res.json(run))
 			.catch(err => ({success: false, err}));
+	},
+	update: (req, res) => {
+		const data = req.body;
+		data.userId = req.user.id;
+
+		const {id} = req.params;
+
+		Dog.update(data, {
+			where: {
+				id,
+				userId: data.userId
+			}
+		})
+			.then((affectedCount, affectedRows) => res.json({success: true}))
+			.catch(err => res.json({success:false, err}));
+	},
+	create: (req, res) => {
+		const data = req.body;
+		data.userId = req.user.id;
+
+		Dog.create(data)
+			.then(instance => res.json({success: true, data: instance}))
+			.catch(err => res.json({success:false, err}));
 	}
 };

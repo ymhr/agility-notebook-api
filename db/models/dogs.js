@@ -18,7 +18,8 @@ const Dog = db.define('dogs', {
 	grade: {
 		type: Sequelize.STRING
 	},
-	notes: Sequelize.TEXT
+	notes: Sequelize.TEXT,
+	height: Sequelize.ENUM('small', 'medium', 'large')
 });
 
 if(process.env.DEV === 'true'){

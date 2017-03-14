@@ -30,7 +30,17 @@ const Run = db.define('runs', {
 		type: Sequelize.INTEGER
 	},
 	notes: Sequelize.TEXT,
-	place: Sequelize.INTEGER
+	place: Sequelize.INTEGER,
+	runningOrder: Sequelize.INTEGER,
+	ringNumber: Sequelize.INTEGER,
+	classSize: Sequelize.INTEGER,
+	judge: Sequelize.STRING,
+	type: Sequelize.ENUM('agility', 'jumping', 'special'),
+	gradeType: Sequelize.ENUM('graded', 'combined'),
+	classNumber: Sequelize.INTEGER,
+	courseTime: Sequelize.FLOAT,
+	runTime: Sequelize.FLOAT,
+	courseLength: Sequelize.INTEGER
 });
 
 if(process.env.DEV === 'true'){

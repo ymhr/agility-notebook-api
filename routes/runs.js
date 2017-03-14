@@ -32,8 +32,8 @@ module.exports = {
 			.catch(err => ({success: false, err}));
 	},
 	create: (req, res) => {
-		// const data = req.body;
-		// data.userId = req.user.id;
+		const data = req.body;
+		data.userId = req.user.id;
 		//
 		// Show.get(req.body.showId)
 		// 	.then(show => {

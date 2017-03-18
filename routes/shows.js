@@ -28,7 +28,7 @@ module.exports = {
 
 		//Make sure the dates are in a format that we want to save
 		dates.forEach(dateField => {
-			data[dateField] = moment(data[dateField], 'dddd Do MMMM, YYYY').format('YYYY-MM-DD');
+			data[dateField] = moment(data[dateField]).format('YYYY-MM-DD');
 		});
 
 		Shows.create(data)
@@ -44,7 +44,7 @@ module.exports = {
 		const dates = ['startDate', 'endDate'];
 
 		dates.forEach(dateField => {
-			data[dateField] = moment(data[dateField], 'dddd Do MMMM, YYYY').format('YYYY-MM-DD');
+			data[dateField] = moment(data[dateField]).format('YYYY-MM-DD');
 		});
 
 		Shows.update(data, {

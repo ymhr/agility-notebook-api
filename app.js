@@ -114,6 +114,9 @@ app.post('/shows/:id', tokenCheck({secret}), routes.shows.update);
 app.get('/shows/:showId/runs', tokenCheck({secret}), routes.runs.getByShow);
 app.post('/shows/:showId/runs', tokenCheck({secret}), routes.runs.create);
 
+app.get('/shows/:showId/runs/:runId', tokenCheck({secret}), routes.runs.get);
+app.post('/shows/:showId/runs/:runId', tokenCheck({secret}), routes.runs.update);
+
 app.get('/profile', tokenCheck({secret}), routes.users.get);
 
 app.get('/dogs', tokenCheck({secret}), routes.dogs.getAll);

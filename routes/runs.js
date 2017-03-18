@@ -23,10 +23,11 @@ module.exports = {
 			.catch(err => ({success: false, err}));
 	},
 	get: (req, res) => {
-		Runs.find({
+		Runs.findOne({
 			where: {
 				userId: req.user.id,
-				id: req.params.id
+				id: req.params.runId,
+				showId: req.params.showId
 			}
 		}).then(run => res.json(run))
 			.catch(err => ({success: false, err}));
@@ -34,32 +35,25 @@ module.exports = {
 	create: (req, res) => {
 		const data = req.body;
 		data.userId = req.user.id;
-		//
-		// Show.get(req.body.showId)
-		// 	.then(show => {
-		// 		const showStartDate = moment(show.starDate);
-		// 		const diff = moment().diff(showStartDate);
-		//
-		// 		let clear = false;
-		//
-		// 		if(diff > 0){
-		// 			if(data.faults > 0){
-		// 				clear = true;
-		// 			}
-		// 		}
-		//
-		// 		data.clear = clear;
-		//
-		// 		Runs.create(data)
-		// 			.then(instance => res.json({success: true, data: instance}))
-		// 			.catch(err => res.json({success:false, err}));
-		// 	})
-		// 	.catch(err => res.json({success: false, err}));
-		//
+
 		Runs.create(data)
 			.then(instance => res.json({success: true, data: instance}))
 			.catch(err => res.json({success:false, err}));
+	},
+	update: (req, res) => {
+		const data = req.body;
+		data.userId = req.user.id;
 
+		const {runId, showId} = req.params;
 
+		Runs.update(data, {
+			where: {
+				id: runId,
+				showId: showId,
+				userId: data.userId
+			}
+		})
+			.then((affectedCount, affectedRows) => res.json({success: true}))
+			.catch(err => res.status(500).json({success:false, err}));
 	}
 };

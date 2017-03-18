@@ -71,13 +71,13 @@ passport.use(new FacebookStrategy({
 
 }));
 
+app.use(cors({origin: process.env.CLIENT_URL}));
 app.use(session({secret}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.resolve(__dirname, '../release')));
-app.use(cors({origin: process.env.CLIENT_URL}));
 
 app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] }));
 

@@ -24,7 +24,7 @@ module.exports = {
 		const data = req.body;
 		data.userId = req.user.id;
 
-		const dates = ['startDate', 'endDate'];
+		const dates = ['startDate', 'endDate', 'closingDate'];
 
 		//Make sure the dates are in a format that we want to save
 		dates.forEach(dateField => {
@@ -41,7 +41,7 @@ module.exports = {
 
 		const {id} = req.params;
 
-		const dates = ['startDate', 'endDate'];
+		const dates = ['startDate', 'endDate', 'closingDate'];
 
 		dates.forEach(dateField => {
 			data[dateField] = moment(data[dateField]).format('YYYY-MM-DD');

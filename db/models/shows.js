@@ -22,7 +22,15 @@ const Shows = db.define('shows', {
         type: Sequelize.DATEONLY
     },
     postcode: Sequelize.STRING,
-    notes: Sequelize.TEXT
+    notes: Sequelize.TEXT,
+    closingDate: Sequelize.DATEONLY,
+    bookedIn: Sequelize.BOOLEAN,
+    paid: Sequelize.BOOLEAN,
+    bookingPlatform: Sequelize.STRING,
+    hotelNeeded: Sequelize.BOOLEAN,
+    hotelBooked: Sequelize.BOOLEAN,
+    holidayNeeded: Sequelize.BOOLEAN,
+    holidayBooked: Sequelize.BOOLEAN
 });
 
 if(process.env.DEV === 'true'){

@@ -36,6 +36,12 @@ module.exports = {
 		const data = req.body;
 		data.userId = req.user.id;
 
+		const dates = ['date'];
+
+		dates.forEach(dateField => {
+			data[dateField] = moment(data[dateField]).format('YYYY-MM-DD');
+		});
+
 		Runs.create(data)
 			.then(instance => res.json({success: true, data: instance}))
 			.catch(err => res.json({success:false, err}));
@@ -45,6 +51,12 @@ module.exports = {
 		data.userId = req.user.id;
 
 		const {runId, showId} = req.params;
+
+		const dates = ['date'];
+
+		dates.forEach(dateField => {
+			data[dateField] = moment(data[dateField]).format('YYYY-MM-DD');
+		});
 
 		Runs.update(data, {
 			where: {

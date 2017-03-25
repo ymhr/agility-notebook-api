@@ -42,7 +42,8 @@ const Run = db.define('runs', {
 	runTime: Sequelize.FLOAT,
 	courseLength: Sequelize.INTEGER,
 	currentGrade: Sequelize.INTEGER,
-	date: Sequelize.DATEONLY
+	date: Sequelize.DATEONLY,
+	specialType: Sequelize.STRING
 });
 
 if(process.env.DEV === 'true'){

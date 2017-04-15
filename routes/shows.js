@@ -1,4 +1,5 @@
 const Shows = require('../db/models/shows');
+const Run = require('../db/models/runs');
 const moment = require('moment');
 
 module.exports = {
@@ -6,7 +7,8 @@ module.exports = {
 		Shows.findAll({
 			where: {
 				userId: req.user.id
-			}
+			},
+			include: [Run]
 		}).then(shows => {
 			res.json(shows);
 		});
@@ -16,7 +18,8 @@ module.exports = {
 			where: {
 				userId: req.user.id,
 				id: req.params.id
-			}
+			},
+			include: [Run]
 		}).then(show => res.json(show))
 			.catch(err => ({success: false, err}));
 	},

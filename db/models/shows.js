@@ -43,3 +43,6 @@ module.exports = Shows;
 
 const User = require('./user');
 Shows.belongsTo(User);
+
+const Run = require('./runs');
+Shows.hasMany(Run);

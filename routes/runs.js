@@ -58,6 +58,8 @@ module.exports = {
 			data[dateField] = moment(data[dateField]).format('YYYY-MM-DD');
 		});
 
+		if(data.faults === '') data.faults = null;
+
 		Runs.update(data, {
 			where: {
 				id: runId,

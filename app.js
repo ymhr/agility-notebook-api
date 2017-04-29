@@ -116,6 +116,7 @@ app.post('/shows/:showId/runs', tokenCheck({secret}), routes.runs.create);
 
 app.get('/shows/:showId/runs/:runId', tokenCheck({secret}), routes.runs.get);
 app.post('/shows/:showId/runs/:runId', tokenCheck({secret}), routes.runs.update);
+app.post('/shows/:showId/runs/:runId/delete', tokenCheck({secret}), routes.runs.destroy);
 
 app.get('/profile', tokenCheck({secret}), routes.users.get);
 

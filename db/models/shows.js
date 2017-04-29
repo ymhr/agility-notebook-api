@@ -31,6 +31,8 @@ const Shows = db.define('shows', {
     hotelBooked: Sequelize.BOOLEAN,
     holidayNeeded: Sequelize.BOOLEAN,
     holidayBooked: Sequelize.BOOLEAN
+}, {
+	paranoid: true
 });
 
 if(process.env.DEV === 'true'){

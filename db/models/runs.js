@@ -46,6 +46,8 @@ const Run = db.define('runs', {
 	specialType: Sequelize.STRING,
 	eliminated: Sequelize.BOOLEAN,
 	winningTime: Sequelize.FLOAT
+}, {
+	paranoid: true
 });
 
 if(process.env.DEV === 'true'){

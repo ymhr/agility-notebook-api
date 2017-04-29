@@ -69,5 +69,14 @@ module.exports = {
 		})
 			.then((affectedCount, affectedRows) => res.json({success: true}))
 			.catch(err => res.status(500).json({success:false, err}));
+	},
+	destroy: (req, res) => {
+		Runs.destroy({
+			where: {
+				userId: req.user.id,
+				id: req.params.runId
+			}
+		}).then(() => res.json({success: true}))
+			.catch(err => res.json({success: false, err}));
 	}
 };

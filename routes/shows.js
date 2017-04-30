@@ -58,5 +58,28 @@ module.exports = {
 		})
 			.then((affectedCount, affectedRows) => res.json({success: true}))
 			.catch(err => res.json({success:false, err}));
+	},
+	destroy: (req, res) => {
+		const deleteShows = () => {
+			return Shows.destroy({
+				where: {
+					userId: req.user.id,
+					id: req.params.showId
+				}
+			})
+		};
+
+		const deleteRuns = () => {
+			return Run.destroy({
+				where: {
+					userId: req.user.id,
+					showId: req.params.showId
+				}
+			});
+		};
+
+		Promise.all([deleteShows(), deleteRuns()])
+			.then(() => res.json({success: true}))
+			.catch(err => res.json({success: false, err}));
 	}
 };

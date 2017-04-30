@@ -111,9 +111,10 @@ app.get('/shows', tokenCheck({secret}), routes.shows.getAll);
 app.get('/shows/:id', tokenCheck({secret}), routes.shows.get);
 app.post('/shows', tokenCheck({secret}), routes.shows.create);
 app.post('/shows/:id', tokenCheck({secret}), routes.shows.update);
+app.post('/shows/:showId/delete', tokenCheck({secret}), routes.shows.destroy);
+
 app.get('/shows/:showId/runs', tokenCheck({secret}), routes.runs.getByShow);
 app.post('/shows/:showId/runs', tokenCheck({secret}), routes.runs.create);
-
 app.get('/shows/:showId/runs/:runId', tokenCheck({secret}), routes.runs.get);
 app.post('/shows/:showId/runs/:runId', tokenCheck({secret}), routes.runs.update);
 app.post('/shows/:showId/runs/:runId/delete', tokenCheck({secret}), routes.runs.destroy);

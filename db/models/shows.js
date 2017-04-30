@@ -30,7 +30,10 @@ const Shows = db.define('shows', {
     hotelNeeded: Sequelize.BOOLEAN,
     hotelBooked: Sequelize.BOOLEAN,
     holidayNeeded: Sequelize.BOOLEAN,
-    holidayBooked: Sequelize.BOOLEAN
+    holidayBooked: Sequelize.BOOLEAN,
+	campingRequired: Sequelize.BOOLEAN,
+	campingBooked: Sequelize.BOOLEAN,
+	campingConfirmed: Sequelize.BOOLEAN
 }, {
 	paranoid: true
 });

@@ -45,7 +45,10 @@ const Run = db.define('runs', {
 	date: Sequelize.DATEONLY,
 	specialType: Sequelize.STRING,
 	eliminated: Sequelize.BOOLEAN,
-	winningTime: Sequelize.FLOAT
+	winningTime: Sequelize.FLOAT,
+	campingRequired: Sequelize.BOOLEAN,
+	campingBooked: Sequelize.BOOLEAN,
+	campingConfirmed: Sequelize.BOOLEAN
 }, {
 	paranoid: true
 });

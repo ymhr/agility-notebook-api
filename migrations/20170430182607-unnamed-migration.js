@@ -9,8 +9,9 @@ module.exports = {
       Example:
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
-   queryInterface.addColumn('runs', 'deletedAt', Sequelize.DATE);
-   queryInterface.addColumn('shows', 'deletedAt', Sequelize.DATE);
+   queryInterface.addColumn('runs', 'campingRequired', Sequelize.BOOLEAN);
+   queryInterface.addColumn('runs', 'campingBooked', Sequelize.BOOLEAN);
+   queryInterface.addColumn('runs', 'campingConfirmed', Sequelize.BOOLEAN);
   },
 
   down: function (queryInterface, Sequelize) {
@@ -21,7 +22,8 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
-    queryInterface.removeColumn('runs', 'deletedAt');
-    queryInterface.removeColumn('shows', 'deletedAt');
+    queryInterface.removeColumn('runs', 'campingRequired');
+    queryInterface.removeColumn('runs', 'campingBooked');
+    queryInterface.removeColumn('runs', 'campingConfirmed');
   }
 };

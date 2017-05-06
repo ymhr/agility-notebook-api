@@ -1,9 +1,9 @@
 const Dog = require('../db/models/dogs');
-const Handler = require('../db/models/dogs');
+const Handler = require('../db/models/handlers');
 
 module.exports = {
 	getAll: (req, res) => {
-		Dog.findAll({
+		Handler.findAll({
 			where: {
 				userId: req.user.id
 			}
@@ -11,7 +11,7 @@ module.exports = {
 			.catch(err => ({success: false, err}));
 	},
 	get: (req, res) => {
-		Dog.find({
+		Handler.find({
 			where: {
 				userId: req.user.id,
 				id: req.params.id
@@ -25,7 +25,7 @@ module.exports = {
 
 		const {id} = req.params;
 
-		Dog.update(data, {
+		Handler.update(data, {
 			where: {
 				id,
 				userId: data.userId
@@ -38,7 +38,7 @@ module.exports = {
 		const data = req.body;
 		data.userId = req.user.id;
 
-		Dog.create(data)
+		Handler.create(data)
 			.then(instance => res.json({success: true, data: instance}))
 			.catch(err => res.json({success:false, err}));
 	}

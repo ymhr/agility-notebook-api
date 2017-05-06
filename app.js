@@ -126,6 +126,11 @@ app.post('/dogs', tokenCheck({secret}), routes.dogs.create);
 app.get('/dogs/:id', tokenCheck({secret}), routes.dogs.get);
 app.post('/dogs/:id', tokenCheck({secret}), routes.dogs.update);
 
+app.get('/handlers', tokenCheck({secret}), routes.handlers.getAll);
+app.post('/handlers', tokenCheck({secret}), routes.handlers.create);
+app.get('/handlers/:id', tokenCheck({secret}), routes.handlers.get);
+app.post('/handlers/:id', tokenCheck({secret}), routes.handlers.update);
+
 app.get('/settings', tokenCheck({secret}), routes.settings.getAll);
 app.post('/settings', tokenCheck({secret}), routes.settings.update);
 

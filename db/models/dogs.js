@@ -31,4 +31,6 @@ if(process.env.DEV === 'true'){
 module.exports = Dog;
 
 const User = require('./user');
+const Handler = require('./handlers');
 Dog.belongsTo(User);
+Dog.belongsTo(Handler)

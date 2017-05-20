@@ -25,5 +25,11 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
+    queryInterface.removeColumn('dogs', 'registeredNumber', Sequelize.STRING);
+    queryInterface.removeColumn('dogs', 'meta', Sequelize.TEXT);
+    queryInterface.removeColumn('dogs', 'breed', Sequelize.STRING);
+    queryInterface.removeColumn('dogs', 'sex', Sequelize.ENUM('dog', 'bitch'));
+    queryInterface.removeColumn('dogs', 'dateOfBirth', Sequelize.DATE);
+    queryInterface.removeColumn('dogs', 'handlerId', Sequelize.INTEGER);
   }
 };

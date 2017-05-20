@@ -19,7 +19,14 @@ const Dog = db.define('dogs', {
 		type: Sequelize.STRING
 	},
 	notes: Sequelize.TEXT,
-	height: Sequelize.ENUM('small', 'medium', 'large')
+	height: Sequelize.ENUM('small', 'medium', 'large'),
+	registeredNumber: Sequelize.INTEGER,
+	meta: Sequelize.TEXT,
+	breed: Sequelize.STRING,
+	sex: Sequelize.ENUM('male', 'female'),
+	dateOfBirth: Sequelize.DATEONLY,
+	lowerHeight: Sequelize.BOOLEAN,
+	notForCompetition: Sequelize.BOOLEAN
 });
 
 if(process.env.DEV === 'true'){

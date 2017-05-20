@@ -45,7 +45,8 @@ const Run = db.define('runs', {
 	date: Sequelize.DATEONLY,
 	specialType: Sequelize.STRING,
 	eliminated: Sequelize.BOOLEAN,
-	winningTime: Sequelize.FLOAT
+	winningTime: Sequelize.FLOAT,
+	handlerOverride: Sequelize.INTEGER
 }, {
 	paranoid: true
 });

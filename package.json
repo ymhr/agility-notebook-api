@@ -30,7 +30,7 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "migrate": "sequelize db:migrate --url mysql://homestead:secret@192.168.10.10/agility-notebook",
-    "prestart": "sequelize db:migrate"
+    // "prestart": "sequelize db:migrate"
   },
   "author": "",
   "license": "ISC"

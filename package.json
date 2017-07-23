@@ -31,7 +31,7 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "migrate": "sequelize db:migrate --url mysql://homestead:secret@192.168.10.10/agility-notebook",
-    "heroku-postbuild": "npm install sequelize --global && sequelize db:migrate"
+    "heroku-postbuild": "./node_modules/.bin/sequelize db:migrate"
   },
   "author": "",
   "license": "ISC"

@@ -31,7 +31,8 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "migrate": "sequelize db:migrate --url mysql://homestead:secret@192.168.10.10/agility-notebook",
-    "heroku-postbuild": "./node_modules/.bin/sequelize db:migrate"
+    "heroku-postbuild-old": "./node_modules/.bin/sequelize db:migrate",
+    "heroku-postbuild": "sequelize db:migrate --url mysql://mysql:2af3da9e6c8b1155@dokku-mysql-db:3306/db"
   },
   "author": "",
   "license": "ISC"

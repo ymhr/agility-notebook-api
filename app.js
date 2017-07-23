@@ -107,6 +107,12 @@ app.get('/api/check', tokenCheck({secret}), (req, res) => {
 
 app.get('/', (req, res) => { res.end('Nothing to see here');  });
 
+app.get('/test', (req, res) => {
+	console.log(req);
+	console.log(res);
+	res.end('Welcome to the Hotel California');
+})
+
 app.get('/shows', tokenCheck({secret}), routes.shows.getAll);
 app.get('/shows/:id', tokenCheck({secret}), routes.shows.get);
 app.post('/shows', tokenCheck({secret}), routes.shows.create);

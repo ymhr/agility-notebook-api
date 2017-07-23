@@ -77,7 +77,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.resolve(__dirname, '../release')));
+app.use('/.well-known', express.static(path.resolve(__dirname, './.well-known')));
 
 app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] }));
 

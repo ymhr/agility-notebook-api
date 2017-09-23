@@ -144,6 +144,7 @@ app.post('/settings', tokenCheck({secret}), routes.settings.update);
 /*
 Run the API server.
  */
-app.listen(process.env.PORT || 3000, () => {
-	console.log(`App listening on port ${process.env.PORT}`);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+	console.log(`App listening on port ${port}`);
 });

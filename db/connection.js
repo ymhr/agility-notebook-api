@@ -10,6 +10,7 @@ if(connectionString) {
 } else {
     db = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USERNAME, process.env.MYSQL_PASSWORD, {
         host: process.env.MYSQL_HOST,
+        port: process.env.MYSQL_PORT || 3306,
         dialect: 'mysql',
         pool: {
            max: 5,

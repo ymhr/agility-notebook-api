@@ -25,6 +25,8 @@ module.exports = {
 
 		const {id} = req.params;
 
+		data.dateOfBirth = moment(data.dateOfBirth).format('YYYY-MM-DD');
+
 		Dog.update(data, {
 			where: {
 				id,
@@ -37,6 +39,8 @@ module.exports = {
 	create: (req, res) => {
 		const data = req.body;
 		data.userId = req.user.id;
+
+		data.dateOfBirth = moment(data.dateOfBirth).format('YYYY-MM-DD');
 
 		Dog.create(data)
 			.then(instance => res.json({success: true, data: instance}))

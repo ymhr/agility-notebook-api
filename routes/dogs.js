@@ -1,5 +1,6 @@
 const Dog = require('../db/models/dogs');
 const Handler = require('../db/models/dogs');
+const moment = require('moment');
 
 module.exports = {
 	getAll: (req, res) => {
@@ -20,8 +21,11 @@ module.exports = {
 			.catch(err => ({success: false, err}));
 	},
 	update: (req, res) => {
-		const data = req.body;
+		let data = req.body;
 		data.userId = req.user.id;
+
+		const dateOfBirth = moment(data.dateOfBirth).format('YYYY-MM-DD');
+		data = {...data, dateOfBirth};
 
 		const {id} = req.params;
 
@@ -35,8 +39,11 @@ module.exports = {
 			.catch(err => res.json({success:false, err}));
 	},
 	create: (req, res) => {
-		const data = req.body;
+		let data = req.body;
 		data.userId = req.user.id;
+
+		const dateOfBirth = moment(data.dateOfBirth).format('YYYY-MM-DD');
+		data = {...data, dateOfBirth};
 
 		Dog.create(data)
 			.then(instance => res.json({success: true, data: instance}))

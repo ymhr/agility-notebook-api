@@ -29,6 +29,8 @@ module.exports = {
 
 		const {id} = req.params;
 
+		data.dateOfBirth = moment(data.dateOfBirth).format('YYYY-MM-DD');
+
 		Dog.update(data, {
 			where: {
 				id,

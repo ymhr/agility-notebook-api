@@ -79,7 +79,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/.well-known', express.static(path.resolve(__dirname, './.well-known')));
 
-const checkRedirectTo = (req, req, next) =>
+const checkRedirectTo = (req, res, next) =>
 {
 	req.session = req.session || {};	
 
@@ -89,19 +89,21 @@ const checkRedirectTo = (req, req, next) =>
 	} else{
 		req.session.returnTo = process.env.CLIENT_URL;
 	}
+	console.log('req session', req.session.returnTo)
+	next();
 };
 
 app.get('/auth/facebook', checkRedirectTo, passport.authenticate('facebook', { scope : ['email'] }));
 
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {
-		successReturnToOrRedirect: '/auth/complete',
+		successRedirect: '/auth/complete',
 		failureRedirect: '/test'
 	}));
 
 app.get('/auth/complete', (req, res) => {
 	const token = jwt.sign(req.user.dataValues, secret);
-	res.redirect(req.session.redirectTo + '?token='+ token+'#');
+	res.redirect(req.session.returnTo + '?token='+ token+'#');
 });
 
 /*

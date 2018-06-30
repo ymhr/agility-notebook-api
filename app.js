@@ -71,7 +71,7 @@ passport.use(new FacebookStrategy({
 
 }));
 
-app.use(cors({origin: process.env.CLIENT_URL}));
+app.use(cors({origin: /.*/}));
 app.use(session({secret}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

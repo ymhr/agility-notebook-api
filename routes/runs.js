@@ -1,7 +1,12 @@
+const router = require('express').Router();
+const tokenCheck = require('express-jwt');
+const secret = process.env.JWT_SECRET;
 const Runs = require('../db/models/runs');
 const Dog = require('../db/models/dogs');
 const Show = require('../db/models/shows');
 const moment = require('moment');
+
+router.get('/');
 
 module.exports = {
 	getAll: (req, res) => {

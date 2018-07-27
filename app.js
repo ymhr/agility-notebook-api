@@ -11,7 +11,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const User = require('./db/models/user');
 
-const routes = require('./routes/index');
+// const routes = require('./routes/index');
+
+const showRoutes = require('./routes/shows');
 
 const secret = process.env.JWT_SECRET;
 
@@ -127,11 +129,12 @@ app.get('/test', (req, res) => {
 	res.end('Welcome to the Hotel California');
 })
 
-app.get('/shows', tokenCheck({secret}), routes.shows.getAll);
-app.get('/shows/:id', tokenCheck({secret}), routes.shows.get);
-app.post('/shows', tokenCheck({secret}), routes.shows.create);
-app.post('/shows/:id', tokenCheck({secret}), routes.shows.update);
-app.post('/shows/:showId/delete', tokenCheck({secret}), routes.shows.destroy);
+app.use('/shows', showRoutes);
+// app.get('/shows', tokenCheck({secret}), routes.shows.getAll);
+// app.get('/shows/:id', tokenCheck({secret}), routes.shows.get);
+// app.post('/shows', tokenCheck({secret}), routes.shows.create);
+// app.post('/shows/:id', tokenCheck({secret}), routes.shows.update);
+// app.post('/shows/:showId/delete', tokenCheck({secret}), routes.shows.destroy);
 
 app.get('/shows/:showId/runs', tokenCheck({secret}), routes.runs.getByShow);
 app.post('/shows/:showId/runs', tokenCheck({secret}), routes.runs.create);
